@@ -1,0 +1,26 @@
+[package]
+name = "ironsea_index_hashmap"
+version = "0.1.0"
+authors = ["EPFL-DIAS", "Lionel Sambuc <lionel.sambuc@epfl.ch>"]
+
+edition = "2018"
+
+description = "Simple `HashMap`-based index implementation for the Iron Sea database toolkit."
+homepage = "https://crates.io/crates/ironsea_index_hashmap"
+repository = "https://github.com/epfl-dias/ironsea_index_hashmap"
+readme = "README.md"
+
+keywords = []
+categories = ["database-implementations", "data-structures"]
+
+license = "MIT"
+#license-file = "LICENSE"
+
+include = ["Cargo.toml", "README.md", "LICENSE", "ACKNOWLEDGEMENTS", "src/**/*.rs"]
+
+[dependencies]
+ironsea_index = "^0.1"
+ironsea_table = "^0.1"
+
+serde = "^1.0"
+serde_derive = "^1.0"

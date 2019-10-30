@@ -1,10 +1,8 @@
 #[macro_use]
 extern crate serde_derive;
 
-mod borrowed;
-mod owned;
+mod destructured;
+mod full_record;
 
-pub use ironsea_table::Table;
-
-pub use borrowed::Index;
-pub use owned::IndexOwned;
+pub use destructured::Index as IndexDestructured;
+pub use full_record::Index;

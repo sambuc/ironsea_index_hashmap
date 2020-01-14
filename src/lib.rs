@@ -1,6 +1,3 @@
-#[macro_use]
-extern crate serde_derive;
-
 mod destructured;
 mod full_record;
 

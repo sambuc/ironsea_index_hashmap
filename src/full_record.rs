@@ -6,6 +6,8 @@ use std::iter::Iterator;
 
 use ironsea_index::Indexed;
 use ironsea_index::Record;
+use serde::Deserialize;
+use serde::Serialize;
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct Index<R, K>

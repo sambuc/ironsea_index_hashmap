@@ -6,6 +6,8 @@ use std::hash::Hash;
 use ironsea_index::IndexedDestructured;
 use ironsea_index::Record;
 use ironsea_index::RecordFields;
+use serde::Deserialize;
+use serde::Serialize;
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct Index<F, K>

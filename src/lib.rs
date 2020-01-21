@@ -1,3 +1,5 @@
+#![forbid(unsafe_code)]
+
 mod destructured;
 mod full_record;
 

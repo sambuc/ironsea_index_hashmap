@@ -1,0 +1,9 @@
+var ALIASES = {};
+ALIASES["ironsea_index"] = {};
+ALIASES["ironsea_index_hashmap"] = {};
+ALIASES["proc_macro2"] = {};
+ALIASES["quote"] = {};
+ALIASES["serde"] = {};
+ALIASES["serde_derive"] = {};
+ALIASES["syn"] = {};
+ALIASES["unicode_xid"] = {};

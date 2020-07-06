@@ -85,22 +85,23 @@ where
     R: Record<K>,
     K: Clone + Eq + Hash + PartialEq + Ord,
 {
-    fn find(&self, key: &K) -> Vec<&R> {
+    fn find<'i>(&'i self, key: &K) -> Box<dyn Iterator<Item = &R> + 'i> {
         let mut values = vec![];
 
         if let Some(record) = self.hashmap.get(key) {
             values.push(record);
         }
 
-        values
+        Box::new(values.into_iter())
     }
 
-    fn find_range(&self, start: &K, end: &K) -> Vec<&R> {
+    fn find_range<'i>(&'i self, start: &K, end: &K) -> Box<dyn Iterator<Item = &R> + 'i> {
         let start = self.index(start);
         let end = self.index(end);
 
-        (start..end)
-            .filter_map(|i| self.hashmap.get(&self.keys[i]))
-            .collect()
+        Box::new((start..=end).filter_map(move |i| {
+            let k = &self.keys[i];
+            self.hashmap.get(k)
+        }))
     }
 }

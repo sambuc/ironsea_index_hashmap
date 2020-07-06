@@ -84,29 +84,27 @@ impl<F, K> IndexedDestructured<F, K> for Index<F, K>
 where
     K: Clone + Eq + Hash + PartialEq + Ord,
 {
-    fn find(&self, key: &K) -> Vec<&F> {
+    fn find<'i>(&'i self, key: &K) -> Box<dyn Iterator<Item = &F> + 'i> {
         let mut values = vec![];
 
         if let Some(fields) = self.hashmap.get(key) {
             values.push(fields);
         }
 
-        values
+        Box::new(values.into_iter())
     }
 
-    fn find_range(&self, start: &K, end: &K) -> Vec<(K, &F)> {
+    fn find_range<'i>(&'i self, start: &K, end: &K) -> Box<dyn Iterator<Item = (K, &F)> + 'i> {
         let start = self.index(start);
         let end = self.index(end);
 
-        (start..end)
-            .filter_map(|i| {
-                let key = &self.keys[i];
-                if let Some(fields) = self.hashmap.get(key) {
-                    Some((key.clone(), fields))
-                } else {
-                    None
-                }
-            })
-            .collect()
+        Box::new((start..=end).filter_map(move |i| {
+            let key = &self.keys[i];
+            if let Some(fields) = self.hashmap.get(key) {
+                Some((key.clone(), fields))
+            } else {
+                None
+            }
+        }))
     }
 }

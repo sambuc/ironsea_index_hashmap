@@ -19,6 +19,6 @@ license = "MIT"
 include = ["Cargo.toml", "README.md", "LICENSE", "ACKNOWLEDGEMENTS", "src/**/*.rs"]
 
 [dependencies]
-ironsea_index = "^0.1"
+ironsea_index = "0.1"
 
-serde = { version = "^1.0", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }

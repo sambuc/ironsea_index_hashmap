@@ -67,7 +67,7 @@ where
     /// If the key is not found, return the index where it should be
     /// inserted.
     fn index(&self, key: &K) -> usize {
-        match self.keys.binary_search(&key) {
+        match self.keys.binary_search(key) {
             Ok(i) => i,
             Err(i) => {
                 if i >= self.keys.len() {
@@ -101,11 +101,7 @@ where
         (start..end)
             .filter_map(|i| {
                 let key = &self.keys[i];
-                if let Some(fields) = self.hashmap.get(key) {
-                    Some((key.clone(), fields))
-                } else {
-                    None
-                }
+                self.hashmap.get(key).map(|fields| (key.clone(), fields))
             })
             .collect()
     }
